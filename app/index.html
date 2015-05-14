@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css" />
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
+        <script type="text/javascript" src="js/rtc.js"></script>
+
+      
+        <style type="text/css">
+            #demoContainer {
+
+            }
+            #connectControls {
+                width:20%;
+                text-align:center;
+                border: 1px solid black;
+            }
+            #otherClients {
+                height:300px;
+            }
+            #videos{
+                left:25%;
+                top:20%;
+                height: 50%;
+                width: 50%;
+                position: fixed;    
+            }
+            #selfVideo {
+                width: 30%;
+                height:auto;
+                top:70%;
+                left:80%;
+                z-index: 2;
+                border:1px solid gray;
+                margin-left:10px;
+            }
+            #callerVideo {
+                width: 100%;
+                height:auto;
+                top:5%;
+                left: 5%;
+                z-index: 1;
+                border:1px solid gray;
+                margin-left:10px;
+            }
+            #acceptCallBox {
+                display:none;
+                z-index:2;
+                position:absolute;
+                top:100px;
+                left:400px;
+                border:red solid 2px;
+                padding:15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+
+            <div id="main">
+
+                <div id="demoContainer">
+                    <div id="connectControls">
+                        <input type="checkbox" checked="checked" id="shareAudio" />Share audio<br />
+                        <input type="checkbox" checked="checked" id="shareVideo" />Share video<br />
+                        <input type="checkbox" checked="checked" id="expectAudio" />Expect  qaudio<br />
+                        <input type="checkbox" checked="checked" id="expectVideo" />Expect video<br />
+
+                        <input type="checkbox" id="useFreshIce" onclick="easyrtc.setUseFreshIceEachPeerConnection(this.value);"/>Fresh Ice<br />
+                        <button id="connectButton" onclick="connect()">Connect</button>
+                        <button onclick="disconnect()">Disconnect</button>
+                        <button id="hangupButton" disabled="disabled" onclick="hangup()">Hangup</button>
+                        <div id="iam">Not yet connected.</div>
+                        <br />
+                        <strong>Connected users:</strong>
+                        <div id="otherClients"></div>
+                    </div>
+
+                    <div id="videos">
+                        <video autoplay="autoplay" id="callerVideo"></video>
+                        <video autoplay="autoplay" id="selfVideo"  class="easyrtcMirror" muted="muted" volume="0"></video>
+                        <div id="acceptCallBox"> 
+                            <div id="acceptCallLabel"></div>
+                            <button id="callAcceptButton" >Accept</button> <button id="callRejectButton">Reject</button>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </body>
+</html>

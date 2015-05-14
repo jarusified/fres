@@ -4,7 +4,7 @@ var http     = require('http'),
 	easyrtc  = require('easyrtc');
 
 var app      = express();
-app.use(express.static(__dirname+'/static'));
+app.use(express.static(__dirname+'/app'));
 
 var server   = http.createServer(app).listen(8080);
 var sockserver = io.listen(server,{"log level" :1});
